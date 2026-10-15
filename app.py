@@ -27,6 +27,8 @@ def get_info(url: str):
     ydl_opts = {
         'noplaylist': True, 
         'quiet': True,
+        'username': 'oauth2',
+        'password': '',
         'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
     }
     try:
@@ -50,6 +52,8 @@ def download_audio(url: str, background_tasks: BackgroundTasks):
         'outtmpl': output_template,
         'noplaylist': True,
         'quiet': True,
+        'username': 'oauth2',
+        'password': '',
         'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
     }
     try:
