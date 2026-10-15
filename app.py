@@ -24,7 +24,11 @@ def home():
 
 @app.get("/info")
 def get_info(url: str):
-    ydl_opts = {'noplaylist': True, 'quiet': True}
+    ydl_opts = {
+        'noplaylist': True, 
+        'quiet': True,
+        'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
+    }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
@@ -45,7 +49,8 @@ def download_audio(url: str, background_tasks: BackgroundTasks):
         'format': 'bestaudio[ext=m4a]/bestaudio',
         'outtmpl': output_template,
         'noplaylist': True,
-        'quiet': True
+        'quiet': True,
+        'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
     }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
